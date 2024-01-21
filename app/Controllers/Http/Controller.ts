@@ -11,6 +11,9 @@ export default abstract class Controller implements IController {
 
   public async index({ response }: HttpContextContract): Promise<any> {
     const data = await this.service.all()
+
+    if (data.length === 0) return response.noContent()
+
     return response.ok(data)
   }
 
@@ -21,6 +24,9 @@ export default abstract class Controller implements IController {
 
   public async show({ params, response }: HttpContextContract): Promise<any> {
     const data = await this.service.find(params.id)
+
+    if (!data) return response.notFound({ message: 'Recurso não encontrado' })
+
     return response.ok(data)
   }
 
