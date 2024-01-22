@@ -51,7 +51,6 @@ class ClassroomsController extends Controller {
 
       return response.ok({ message: 'Sala deletada com sucesso' })
     } catch (error) {
-      console.log(error)
       return response.badRequest({ message: error.message })
     }
   }
