@@ -19,6 +19,12 @@ class ProfessorService extends Service {
 
     return professor
   }
+
+  public async professorClasses(id: number) {
+    const professorCourses = await ProfessorsRepository.professorClasses(id)
+
+    return professorCourses
+  }
 }
 
 export default new ProfessorService(ProfessorsRepository)

@@ -36,6 +36,18 @@ class ProfessorsController extends Controller {
       return response.badRequest({ message: error.message })
     }
   }
+
+  public async professorClasses({ response, params }: HttpContextContract) {
+    try {
+      const data = await ProfessorService.professorClasses(params.id)
+
+      if (!data) return response.notFound({ message: 'Professor não encontrado' })
+
+      return response.ok(data)
+    } catch (error) {
+      return response.badRequest({ message: error.message })
+    }
+  }
 }
 
 export default new ProfessorsController(ProfessorService)

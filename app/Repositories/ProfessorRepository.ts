@@ -1,6 +1,7 @@
 import { Repository } from './Repository'
 import Professor from 'App/Models/Professor'
 import User from 'App/Models/User'
+import ClassRoom from 'App/Models/ClassRoom'
 
 class ProfessorRepository extends Repository {
   public async all() {
@@ -27,6 +28,12 @@ class ProfessorRepository extends Repository {
 
     await professor.delete()
     await user?.delete()
+  }
+
+  public async professorClasses(id: number) {
+    const professorCourses = await ClassRoom.query().where('professor_id', id)
+
+    return professorCourses
   }
 }
 
