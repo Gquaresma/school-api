@@ -1,8 +1,9 @@
 import { DateTime } from 'luxon'
-import { BaseModel, HasOne, column, hasOne } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, HasOne, beforeCreate, column, hasOne } from '@ioc:Adonis/Lucid/Orm'
 import Student from './Student'
 import Professor from './Professor'
 import { UserType } from 'App/Enums/UserType'
+import generateRegistry from 'App/helpers/GenerateRegistry'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -34,4 +35,9 @@ export default class User extends BaseModel {
 
   @hasOne(() => Professor)
   public professor: HasOne<typeof Professor>
+
+  @beforeCreate()
+  public static async generateUserRegistry(user: User) {
+    user.registry = generateRegistry()
+  }
 }

@@ -8,9 +8,9 @@ export default class extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('name', 100).notNullable()
-      table.string('email').notNullable()
+      table.string('email').notNullable().unique()
       table.enum('type', Object.values(UserType)).notNullable()
-      table.string('registry', 100).notNullable().unique()
+      table.string('registry', 6).notNullable().unique()
       table.dateTime('birthday').notNullable()
 
       /**
