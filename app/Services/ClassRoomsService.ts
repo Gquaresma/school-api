@@ -18,7 +18,12 @@ class ClassroomsService extends Service {
 
   public async update(id: number, data: ClassroomUpdateDTO) {
     const classroomFound = await super.find(id)
-    const { isAvailable, currentCapacity, maxCapacity } = classroomFound
+    let { isAvailable, currentCapacity, maxCapacity } = classroomFound
+
+    if ((data?.maxCapacity ?? 0) > maxCapacity && !isAvailable) {
+      console.log(isAvailable)
+      maxCapacity = data.maxCapacity
+    }
 
     if (!isAvailable && data.isAvailable && currentCapacity === maxCapacity) {
       throw new ClassroomException(
