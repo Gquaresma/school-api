@@ -56,6 +56,7 @@ export default abstract class Controller implements IController {
       await this.service.delete(params.id)
       return response.noContent()
     } catch (error) {
+      console.log(params)
       return response.badRequest({ message: error.message })
     }
   }
