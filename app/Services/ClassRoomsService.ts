@@ -18,17 +18,16 @@ class ClassroomsService extends Service {
 
   public async update(id: number, data: ClassroomUpdateDTO) {
     const classroomFound = await super.find(id)
+    const { isAvailable, currentCapacity, maxCapacity } = classroomFound
 
-    if (
-      !classroomFound.isAvailable &&
-      data.isAvailable &&
-      classroomFound.currentCapacity === classroomFound.maxCapacity
-    )
-      throw new ClassroomException('Não é possível alterar a disponibilidade de uma turma cheia')
+    if (!isAvailable && data.isAvailable && currentCapacity === maxCapacity) {
+      throw new ClassroomException(
+        'Não é possível alterar a disponibilidade de uma turma cheia, aumente a capacidade máxima da turma ou desaloque alunos'
+      )
+    }
 
     return super.update(id, { ...classroomFound, ...data })
   }
-
   public async destroy(id: number) {
     return super.delete(id)
   }
