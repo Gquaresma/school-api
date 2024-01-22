@@ -12,7 +12,7 @@ Elaborar uma aplicação para ajudar a controloar a alocação de alunos e profe
 
 ### Executando a aplicação
 ##### Backend
-1. Entre na pasta api utilizando o comando  $ cd api
+1. Entre na pasta school-api utilizando o comando  $ cd school-api
 2. Na raiz da API, crie um arquivo .env segundo o exemplo contido no arquivo .env.example.
 3. Execute os seguintes comando
 ```bash
