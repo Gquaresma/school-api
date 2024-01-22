@@ -1,4 +1,4 @@
-# Teceo teste técnico
+# ClickSoft teste técnico
 Projeto criado para a seleção do cargo Desenvolvedor, da ClickSoft. O projeto utiliza Adonijs O banco de dados utilizado foi o PostgreSQL, o qual foi integrado ao backend utilizando a orm do próprio Adonisjs
 
 ### Objetivo
