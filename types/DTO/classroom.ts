@@ -9,5 +9,5 @@ export type ClassroomUpdateDTO = {
   classNumber?: number
   isAvailable?: boolean
   maxCapacity?: number
-  professorId?: string
+  professorId: string
 }

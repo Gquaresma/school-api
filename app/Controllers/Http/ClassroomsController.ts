@@ -31,7 +31,7 @@ class ClassroomsController extends Controller {
           message: 'Você não pode alterar uma sala de outro professor',
         })
 
-      await ClassRoomsService.update(params.id, data as ClassroomUpdateDTO)
+      await ClassRoomsService.update(params.id, data as unknown as ClassroomUpdateDTO)
 
       return response.ok('Sala atualizada')
     } catch (error) {

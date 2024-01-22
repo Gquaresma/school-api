@@ -9,7 +9,7 @@ export const createClassroomSchema = schema.create({
 
 export const updateClassroomSchema = schema.create({
   classNumber: schema.number.optional([rules.unsigned()]),
-  professorId: schema.number.optional([rules.unsigned()]),
+  professorId: schema.number([rules.unsigned()]),
   maxCapacity: schema.number.optional([rules.unsigned()]),
   isAvailable: schema.boolean.optional(),
 })
