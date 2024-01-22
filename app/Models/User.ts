@@ -37,7 +37,7 @@ export default class User extends BaseModel {
   public professor: HasOne<typeof Professor>
 
   @beforeCreate()
-  public static async generateUserRegistry(user: User) {
+  public static generateUserRegistry(user: User): void {
     user.registry = generateRegistry()
   }
 }

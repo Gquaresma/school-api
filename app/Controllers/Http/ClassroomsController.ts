@@ -2,28 +2,29 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import Controller from 'App/Controllers/Http/Controller'
 import ClassRoomsService from 'App/Services/ClassRoomsService'
 import { ClassroomDTO, ClassroomUpdateDTO } from 'types/DTO/classroom'
+import { createClassroomSchema, updateClassroomSchema } from 'App/Validators/ClassroomValidator'
 
 class ClassroomsController extends Controller {
   public async create({ request, response, params }: HttpContextContract) {
     try {
-      const data = request.body()
+      const data = await request.validate({ schema: createClassroomSchema })
 
       if (Number(params.professorId) !== data.professorId)
         return response.unauthorized({
           message: 'Você não pode criar uma sala para outro professor',
         })
 
-      const classroom = await ClassRoomsService.create(data as ClassroomDTO)
+      const classroom = await ClassRoomsService.create(data as unknown as ClassroomDTO)
 
       return response.created(classroom)
     } catch (error) {
-      return response.badRequest({ message: error.message })
+      return response.badRequest({ message: error })
     }
   }
 
   public async update({ request, response, params }: HttpContextContract) {
     try {
-      const data = request.body()
+      const data = await request.validate({ schema: updateClassroomSchema })
 
       if (Number(params.professorId) !== data.professorId)
         return response.unauthorized({
