@@ -19,6 +19,7 @@ Elaborar uma aplicação para ajudar a controloar a alocação de alunos e profe
     ports:
       - '1234:5432'
 ```
+* Caso tenha feito a alteração anterior lembre de também alterar no arquivo .env
 5. Execute os seguintes comando
 ```bash
 $ yarn install //irá instalar as dependências necessárias
