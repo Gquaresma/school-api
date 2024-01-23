@@ -31,7 +31,7 @@ class ProfessorRepository extends Repository {
   }
 
   public async professorClasses(id: number) {
-    const professorCourses = await ClassRoom.query().where('professor_id', id)
+    const professorCourses = await ClassRoom.query().where('professor_id', id).firstOrFail()
 
     return professorCourses
   }

@@ -15,9 +15,11 @@ class StudentService extends Service {
   }
 
   public async showStudentClasses(id: number) {
-    const student = await StudentsRepository.showStudentClasses(id)
+    await StudentsRepository.find(id)
 
-    const classes = student[0].classRooms.map((classRoom) => {
+    const studentClasses = await StudentsRepository.showStudentClasses(id)
+
+    const classes = studentClasses[0].classRooms.map((classRoom) => {
       return {
         classNumber: classRoom.classNumber,
         professor: classRoom.professor.user.name,
@@ -25,7 +27,7 @@ class StudentService extends Service {
     })
 
     return {
-      studentName: student[0].user.name,
+      studentName: studentClasses[0].user.name,
       classes,
     }
   }
